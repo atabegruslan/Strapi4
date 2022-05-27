@@ -8,6 +8,16 @@ https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html
 
 https://www.youtube.com/c/Strapi
 
+https://docs.strapi.io/developer-docs/latest/development/plugins-development.html
+
+https://strapi.io/plugin-resources
+
+- https://design-system.strapi.io/
+	- https://design-system.strapi.io/components
+		- https://design-system-git-main-strapijs.vercel.app/?path=/story/design-system-components-theme--icons
+		- https://storybook.js.org/docs/react/get-started/introduction
+	- https://strapi.io/blog/introducing-strapi-ui-kit
+
 node v14.0.0
 npm v6.14.4
 

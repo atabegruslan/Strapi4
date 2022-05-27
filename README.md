@@ -14,9 +14,9 @@ Crash courses:
 
 ## Plugins
 
-https://docs.strapi.io/developer-docs/latest/development/plugins-development.html
-
-https://strapi.io/plugin-resources
+- https://docs.strapi.io/developer-docs/latest/development/plugins-development.html
+- https://strapi.io/plugin-resources
+- https://docs.strapi.io/developer-docs/latest/developer-resources/plugin-api-reference/admin-panel.html
 
 ## DB interaction
 
@@ -47,6 +47,12 @@ https://docs.strapi.io/developer-docs/latest/development/backend-customization/c
 - https://forum.strapi.io/t/retrieve-user-details/5082/2 (v3, but still applicable to v4)
 - https://strapi.io/blog/a-beginners-guide-to-authentication-and-authorization-in-strapi (v4, but relatable to v3)
 	- https://www.youtube.com/watch?v=vcopLqUq594&t=4336s
+
+## Lang
+
+- https://docs.strapi.io/developer-docs/latest/plugins/i18n.html#getting-localized-entries-with-the-locale-parameter
+- https://docs.strapi.io/developer-docs/latest/development/admin-customization.html#extending-translations
+- https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/filtering-locale-publication.html#locale
 
 ## Default Plugins
 
@@ -83,3 +89,7 @@ Hot reload: `yarn develop --watch-admin`
 https://github.com/strapi/strapi/releases
 
 https://discord.com/invite/strapi
+
+## Good plugins for imitation/reference
+
+- https://github.com/nicolashmln/strapi-plugin-responsive-image

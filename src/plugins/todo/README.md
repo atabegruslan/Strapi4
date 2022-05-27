@@ -3,11 +3,12 @@
 - https://strapi.io/blog/how-to-create-a-strapi-v4-plugin-generate-a-plugin-1-6
 - https://www.youtube.com/playlist?list=PL7Q0DQYATmvjd5D57P8CN0_xp_HsRd3wn
 
+## Frontend Resources and Help
 
-DB: 
-    - https://strapi.io/blog/using-database-transactions-to-write-queries-in-strapi
-    - Query Engine API: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine-api.html
-        - Entity Service API: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/entity-service-api.html
-            - CRUD: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/entity-service/crud.html
+- https://design-system.strapi.io/
+	- https://design-system.strapi.io/components
+		- https://design-system-git-main-strapijs.vercel.app/?path=/story/design-system-components-theme--icons
+		- https://storybook.js.org/docs/react/get-started/introduction
+	- https://strapi.io/blog/introducing-strapi-ui-kit
 
-Controllers: https://docs.strapi.io/developer-docs/latest/development/backend-customization/controllers.html
+Not yet complete. Still on 4/6. Stuck on controller, services, CRUD

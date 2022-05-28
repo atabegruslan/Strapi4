@@ -12,6 +12,8 @@ Crash courses:
 - https://www.youtube.com/watch?v=vcopLqUq594
 - https://www.youtube.com/watch?v=HjhK0pzwlbU
 
+Structure: https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/file-structure.html
+
 ## Plugins
 
 - https://docs.strapi.io/developer-docs/latest/development/plugins-development.html

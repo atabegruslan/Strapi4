@@ -1,0 +1,4 @@
+- https://docs.strapi.io/developer-docs/latest/plugins/upload.html
+- https://oramind.com/develop-strapi-upload-provider/
+- https://github.com/strapi/strapi/blob/master/packages/providers/upload-local/lib/index.js
+- https://www.stefanjudis.com/today-i-learned/npm-install-supports-local-packages/

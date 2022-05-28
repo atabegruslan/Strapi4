@@ -13,4 +13,10 @@ module.exports = {
     resolve: './src/plugins/crud'
   },
   // ...
+  'upload': {
+    config: {
+      provider: 'custom',
+      providerOptions: {},
+    },
+  },
 }

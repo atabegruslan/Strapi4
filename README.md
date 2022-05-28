@@ -8,11 +8,13 @@ https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html
 
 https://www.youtube.com/c/Strapi
 
-Crash courses: 
+Crash courses
 - https://www.youtube.com/watch?v=vcopLqUq594
 - https://www.youtube.com/watch?v=HjhK0pzwlbU
 
-Structure: https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/file-structure.html
+Structure
+- CMS: https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/file-structure.html
+- Plugin: https://docs.strapi.io/developer-docs/latest/update-migration-guides/migration-guides/v4/plugin/update-folder-structure.html#updating-folder-structure-automatically : "Example of a Strapi v4 plugin structure"
 
 ## Plugins
 
@@ -56,15 +58,42 @@ https://docs.strapi.io/developer-docs/latest/development/backend-customization/c
 - https://docs.strapi.io/developer-docs/latest/development/admin-customization.html#extending-translations
 - https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/filtering-locale-publication.html#locale
 
-## Default Plugins
+## Packages (Providers & Plugins)
 
-https://docs.strapi.io/developer-docs/latest/plugins/plugins-intro.html
+- https://github.com/strapi/strapi/tree/master/packages
+- https://docs.strapi.io/developer-docs/latest/plugins/plugins-intro.html
 
 ### Uploader
 
 - https://docs.strapi.io/developer-docs/latest/plugins/upload.html
 - https://www.youtube.com/watch?v=gQD24HJP1mc
 - https://www.youtube.com/watch?v=A4VZyo6BrJA&t=660s
+
+## Providers
+
+https://strapi.io/video-library/install-config-email-upload-provider (Using Email and Upload as examples)
+
+### Social SignIns
+
+- Login providers: https://strapi.io/video-library/how-login-provider-process-works
+    - Google: https://www.youtube.com/watch?v=vGtVSwpOlsM (v3, but still applicable for v4)
+    - FB: https://strapi.io/blog/learning-strapi-authentication-flows-facebook-provider
+    - Github and FB: https://strapi.io/blog/social-authentication-with-strapi-and-nuxt-js-adding-social-providers
+    - Auth0: https://strapi.io/blog/auth0-provider-and-strapi-tutorial
+
+### Other providers
+
+- Email and Upload: https://www.youtube.com/watch?v=1fhFgbR0f3I
+- Cloudinary: https://www.npmjs.com/package/@strapi/provider-upload-cloudinary
+
+## Extensions
+
+- https://www.youtube.com/watch?v=zuJPTIEYbXk (v3, but still good for ref)
+- https://docs.strapi.io/developer-docs/latest/development/plugins-extension.html#extending-a-plugin-s-content-types
+
+## Middleware
+
+https://docs.strapi.io/developer-docs/latest/development/backend-customization/middlewares.html
 
 ## Install and Run
 

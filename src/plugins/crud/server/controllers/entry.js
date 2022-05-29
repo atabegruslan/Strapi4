@@ -10,27 +10,41 @@
 
 // https://docs.strapi.io/developer-docs/latest/development/backend-customization/controllers.html
 module.exports = {
-  index(ctx) {
-    ctx.body = strapi
+  async index(ctx) {
+    ctx.body = await strapi
       .plugin('crud')
       .service('entry')
       .index(ctx);
   },
-  entry(ctx) {
+  async entry(ctx) {
     const { id } = ctx.params;
     // const { query } = ctx; // eg: ?a=b becomes {"a":"b"}
 
-    ctx.body = strapi
+    ctx.body = await strapi
       .plugin('crud')
       .service('entry')
       .entry(ctx, id);
   },
-  create(ctx) {
-    ctx.body = ctx.request.body;
+  async create(ctx) {
+    ctx.body = await strapi
+      .plugin('crud')
+      .service('entry')
+      .create(ctx, ctx.request.body);
+  },
+  async update(ctx) {
+    const { id } = ctx.params;
 
-    // ctx.body = strapi
-    //   .plugin('crud')
-    //   .service('entry')
-    //   .create(ctx);
+    ctx.body = await strapi
+      .plugin('crud')
+      .service('entry')
+      .update(ctx, id, ctx.request.body);
+  },
+  async delete(ctx) {
+    const { id } = ctx.params;
+
+    ctx.body = await strapi
+      .plugin('crud')
+      .service('entry')
+      .delete(ctx, id);
   },
 };

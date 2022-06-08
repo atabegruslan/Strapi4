@@ -26,6 +26,7 @@ Structure
 
 - https://strapi.io/blog/using-database-transactions-to-write-queries-in-strapi
 - Query Engine API: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine-api.html
+    - https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine/bulk-operations.html
     - Entity Service API: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/entity-service-api.html
         - CRUD: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/entity-service/crud.html
 
@@ -57,6 +58,10 @@ https://docs.strapi.io/developer-docs/latest/development/backend-customization/c
 - https://docs.strapi.io/developer-docs/latest/plugins/i18n.html#getting-localized-entries-with-the-locale-parameter
 - https://docs.strapi.io/developer-docs/latest/development/admin-customization.html#extending-translations
 - https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/filtering-locale-publication.html#locale
+
+## Hooks
+
+https://strapi.io/blog/understanding-the-different-types-categories-of-strapi-hooks
 
 ## Packages (Providers & Plugins)
 
@@ -95,6 +100,62 @@ https://strapi.io/video-library/install-config-email-upload-provider (Using Emai
 
 https://docs.strapi.io/developer-docs/latest/development/backend-customization/middlewares.html
 
+EG: Using middleware to allow CORS: https://stackoverflow.com/questions/71382302/setting-cors-in-strapi-4/71555786#71555786  
+PS: CORS affects `@strapi/helper-plugin`'s helper, but not JS's `fetch`
+
+## HTTP
+
+- https://www.npmjs.com/package/@strapi/helper-plugin
+
+Example
+
+```js
+import React, { memo, useEffect, useState } from 'react';
+import pluginId from '../../pluginId';
+import $ from 'jquery';
+import { request } from "@strapi/helper-plugin";
+
+const HomePage = () => {
+  const [config, setConfig] = useState({
+    aaa: '',
+    bbb: ''
+  });
+
+  useEffect(() => {
+    request("{ENDPOINT}", {method: 'GET', headers:{"HEADERNAME":"HEADERVALUE"}}).then(setConfig);
+  }, []);
+```
+
+- https://discord.com/channels/811989166782021633/841755530007805983/982103729186693160
+
+## Configs
+
+### Env file
+
+`.env`
+```
+HOST=0.0.0.0
+PORT=1337
+```
+
+### CMS config file
+
+`config/server.js`
+```js
+module.exports = ({ env }) => ({
+  host: env('HOST', '0.0.0.0'),
+  port: env.int('PORT', 1337),
+});
+```
+
+`strapi.config.get('server.host', 'defaultValueIfUndefined');`
+
+https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/configurations.html
+
+### Plugin config file
+
+https://docs.strapi.io/developer-docs/latest/developer-resources/plugin-api-reference/server.html#configuration
+
 ## Install and Run
 
 node v14.0.0
@@ -109,11 +170,13 @@ After you install and run for the first time, you will be prompted to make a sup
 Chose plugin,  
 Name it.  
 
-`yarn strapi build`
+`yarn build`
 
-`yarn develop`
+Run: `yarn start`
 
-Hot reload: `yarn develop --watch-admin`
+Hot reload: `yarn develop`
+
+Hot reload (Backend included): `yarn develop --watch-admin`
 
 ## Ref
 

@@ -221,6 +221,17 @@ https://discord.com/invite/strapi
   - https://docs.strapi.io/developer-docs/latest/plugins/upload.html#endpoints
   - https://forum.strapi.io/t/upload-image-url/3484/2
   - https://dev.to/bassel17/how-to-upload-an-image-to-strapi-2hhg
+    ```js
+    var fileResponse = await fetch(url);
+    var fileBlob = await fileResponse.blob();
+
+    var formData = new FormData();
+    formData.append('files', fileBlob);
+    formData.append('fileInfo', JSON.stringify({"alternativeText":alt,"caption":"","name":name}));
+
+    var uploadResponse = await fetch(`${strapi.backendURL}/api/upload`, { method: 'POST', headers: { "Authorization": `Bearer ${authData.jwt}` }, body: formData });
+    console.dir(uploadResponse);
+    ```
 - CSS
   - https://forum.strapi.io/t/admin-panel-how-to-add-custom-css/3823/2
   - https://strapi.io/blog/how-to-create-an-import-content-plugin-part-1-4
@@ -229,7 +240,7 @@ https://discord.com/invite/strapi
   - yarn strapi generate:plugin import-content https://strapi.io/blog/how-to-create-an-import-content-plugin-part-1-4
   - yarn strapi generate:model importconfig --plugin import-content https://strapi.io/blog/how-to-create-an-import-content-plugin-part-1-4
 - https://forum.strapi.io/t/how-to-add-a-new-provider-in-users-permissions-plugin-in-strapi-v4/14165/2
-- Auth, get me,..
+- Auth
   - https://docs.strapi.io/developer-docs/latest/guides/auth-request.html
   - Strapi v4, for authenticate user route should be `/api/auth/local`, not `/auth/local` https://getridbug.com/node-js/strapi-register-method-not-allowed-405-in-v4-seems-url-is-incorrect/
   - Making protected routes: https://strapi.io/blog/protected-routes-and-authentication-with-react-and-node-js
@@ -237,6 +248,30 @@ https://discord.com/invite/strapi
   - https://www.youtube.com/watch?v=N4JpylgjRK0&list=PL4cUxeGkcC9h6OY8_8Oq6JerWqsKdAPxn&index=4
   - https://strapi.io/blog/a-beginners-guide-to-authentication-and-authorization-in-strapi
   - https://docs.strapi.io/developer-docs/latest/guides/jwt-validation.html#customize-the-jwt-validation-function
+    ```js
+    var formdata = new FormData();
+    formdata.append("identifier", config.user);
+    formdata.append("password", config.pass);
+
+    var requestOptions = {
+      method: 'POST',
+      body: formdata
+    };
+
+    var authResponse = await fetch(`${strapi.backendURL}/api/auth/local`, requestOptions);
+
+    if (authResponse.status != 200)
+    {
+      return;
+    }
+
+    var authData = await authResponse.json();
+
+    if (authData.hasOwnProperty('error'))
+    {
+      return;
+    }
+    ```
 - Env, config/server
 - Middleware
 - Request

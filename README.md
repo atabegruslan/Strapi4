@@ -12,6 +12,10 @@ Crash courses
 - https://www.youtube.com/watch?v=vcopLqUq594
 - https://www.youtube.com/watch?v=HjhK0pzwlbU
 
+Tutorials
+- https://www.youtube.com/playlist?list=PL_kVwOdi-YKRS7UopjcRsdmnxkPMnr1qD
+- https://www.youtube.com/playlist?list=PL7Q0DQYATmvgTWQH91NhIdY2BFdDYntPP
+
 Structure
 - CMS: https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/file-structure.html
 - Plugin: https://docs.strapi.io/developer-docs/latest/update-migration-guides/migration-guides/v4/plugin/update-folder-structure.html#updating-folder-structure-automatically : "Example of a Strapi v4 plugin structure"
@@ -21,6 +25,8 @@ Structure
 - https://docs.strapi.io/developer-docs/latest/development/plugins-development.html
 - https://strapi.io/plugin-resources
 - https://docs.strapi.io/developer-docs/latest/developer-resources/plugin-api-reference/admin-panel.html
+- https://issuecloser.com/blog/how-to-create-a-strapi-v4-plugin (read later)
+- https://www.youtube.com/playlist?list=PL7Q0DQYATmvjd5D57P8CN0_xp_HsRd3wn (read later)
 
 ## DB interaction
 
@@ -124,9 +130,14 @@ const HomePage = () => {
   useEffect(() => {
     request("{ENDPOINT}", {method: 'GET', headers:{"HEADERNAME":"HEADERVALUE"}}).then(setConfig);
   }, []);
+
+  // ...
+
+  await request("{ENDPOINT}", {method: 'PUT', body: config});
 ```
 
 - https://discord.com/channels/811989166782021633/841755530007805983/982103729186693160
+- https://github.com/strapi/strapi/blob/master/packages/core/helper-plugin/lib/src/utils/request/index.js
 
 ## Configs
 
@@ -164,6 +175,10 @@ npm v6.14.4
 `yarn create strapi-app plugin-name`,  
 Chose quickstart.   
 
+Refs:
+- https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/installation/cli.html#creating-a-strapi-project
+- https://www.codegrepper.com/code-examples/shell/how+to+install+latest+version+of+strapi
+
 After you install and run for the first time, you will be prompted to make a superadmin account.
 
 `npm run strapi generate`,  
@@ -184,6 +199,61 @@ https://github.com/strapi/strapi/releases
 
 https://discord.com/invite/strapi
 
-## Good plugins for imitation/reference
+## Good plugins & plugins for imitation/reference
 
 - https://github.com/nicolashmln/strapi-plugin-responsive-image
+- https://github.com/MattieBelt/strapi-hook-algolia (For understanding hooks)
+- https://github.com/shorwood/strapi-provider-upload-do
+
+## My personal projects and notes
+
+- https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/crud
+- https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/social-share
+- https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/todo
+- https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/wysiwyg
+- https://github.com/atabegruslan/Strapi4/tree/master/providers/%40strapi/provider-upload-custom
+
+---
+
+# To Read
+
+- Upload
+  - https://docs.strapi.io/developer-docs/latest/plugins/upload.html#endpoints
+  - https://forum.strapi.io/t/upload-image-url/3484/2
+  - https://dev.to/bassel17/how-to-upload-an-image-to-strapi-2hhg
+- CSS
+  - https://forum.strapi.io/t/admin-panel-how-to-add-custom-css/3823/2
+  - https://strapi.io/blog/how-to-create-an-import-content-plugin-part-1-4
+- Cli commands (make this and that)
+  - yarn strapi generate content-type https://strapi.io/blog/how-to-create-a-strapi-v4-plugin-generate-a-plugin-1-6
+  - yarn strapi generate:plugin import-content https://strapi.io/blog/how-to-create-an-import-content-plugin-part-1-4
+  - yarn strapi generate:model importconfig --plugin import-content https://strapi.io/blog/how-to-create-an-import-content-plugin-part-1-4
+- https://forum.strapi.io/t/how-to-add-a-new-provider-in-users-permissions-plugin-in-strapi-v4/14165/2
+- Auth, get me,..
+  - https://docs.strapi.io/developer-docs/latest/guides/auth-request.html
+  - Strapi v4, for authenticate user route should be `/api/auth/local`, not `/auth/local` https://getridbug.com/node-js/strapi-register-method-not-allowed-405-in-v4-seems-url-is-incorrect/
+  - Making protected routes: https://strapi.io/blog/protected-routes-and-authentication-with-react-and-node-js
+  - In route -> controller, `ctx.state.user` would only be something is its an auth'ed route https://discord.com/channels/811989166782021633/841755530007805983/988815887882653736
+  - https://www.youtube.com/watch?v=N4JpylgjRK0&list=PL4cUxeGkcC9h6OY8_8Oq6JerWqsKdAPxn&index=4
+  - https://strapi.io/blog/a-beginners-guide-to-authentication-and-authorization-in-strapi
+  - https://docs.strapi.io/developer-docs/latest/guides/jwt-validation.html#customize-the-jwt-validation-function
+- Env, config/server
+- Middleware
+- Request
+- i18n
+  - https://docs-v3.strapi.io/developer-docs/latest/development/local-plugins-customization.html#i18n
+  - react-intl
+    - https://www.npmjs.com/package/react-intl
+    - https://formatjs.io/docs/react-intl/
+    - https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-react-app-with-react-intl
+    - https://github.com/formatjs/formatjs
+    - https://lokalise.com/blog/react-i18n-intl/
+- Create content of type
+```
+Request URL: http://localhost:1337/content-manager/collection-types/api::restaurant.restaurant
+Request Method: POST
+---
+Description: "Bbb"
+Name: "Restaurant2"
+categories: [1]
+```

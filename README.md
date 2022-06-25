@@ -273,7 +273,9 @@ https://discord.com/invite/strapi
     }
     ```
 - Env, config/server
-- Middleware
+- Middleware 
+  - Is it possible to use this request thing ( import { request } from "@strapi/helper-plugin"; ) to call an API of another domain? When I tried it, it kept showing me CORS error: https://stackoverflow.com/questions/71382302/setting-cors-in-strapi-4/71555786#71555786
+  - https://github.com/strapi/strapi/issues/11637#issuecomment-977244572
 - Request
 - i18n
   - https://docs-v3.strapi.io/developer-docs/latest/development/local-plugins-customization.html#i18n
@@ -283,6 +285,17 @@ https://discord.com/invite/strapi
     - https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-react-app-with-react-intl
     - https://github.com/formatjs/formatjs
     - https://lokalise.com/blog/react-i18n-intl/
+    ```js
+    import { sprintf } from 'sprintf-js';
+    import { useIntl } from 'react-intl';
+
+    const SomeComponent = (props) => {
+      const intl = useIntl();
+
+      // {PLUGIN FOLDR}/admin/src/translations/en.json : { "notification.success.lang_str_id": "xxx %1$d yyy %2$d", }
+      var resultString = sprintf(intl.formatMessage({id:'scaleflex-filerobot.notification.success.lang_str_id'}), someNumber, anotherNumber);
+      alert(resultString);
+    ```
 - Create content of type
 ```
 Request URL: http://localhost:1337/content-manager/collection-types/api::restaurant.restaurant

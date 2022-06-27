@@ -1,0 +1,25 @@
+{
+  "name": "auth-and-upload",
+  "version": "0.0.0",
+  "description": "This is the description of the plugin.",
+  "strapi": {
+    "name": "auth-and-upload",
+    "description": "Description of Auth And Upload plugin",
+    "kind": "plugin",
+    "displayName": "Auth And Upload"
+  },
+  "dependencies": {},
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "maintainers": [
+    {
+      "name": "A Strapi developer"
+    }
+  ],
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

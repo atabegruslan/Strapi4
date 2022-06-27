@@ -22,10 +22,10 @@ export default {
       },
       permissions: [
         // Uncomment to set the permissions of the plugin here
-        {
-          action: 'plugin::crud.entry', // the action name should be plugin::plugin-name.actionType
-          subject: null,
-        },
+        // {
+        //   action: 'plugin::crud.entry', // the action name should be plugin::plugin-name.actionType
+        //   subject: null,
+        // },
       ],
     });
     app.registerPlugin({

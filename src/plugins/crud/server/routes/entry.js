@@ -17,7 +17,7 @@ module.exports = {
     routes: [
         {
             method: 'GET',
-            path: '/',
+            path: '/', // http://localhost:1337/crud/
             handler: 'entry.index',
             config: {
                 policies: [],

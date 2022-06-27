@@ -25,8 +25,17 @@ Structure
 - https://docs.strapi.io/developer-docs/latest/development/plugins-development.html
 - https://strapi.io/plugin-resources
 - https://docs.strapi.io/developer-docs/latest/developer-resources/plugin-api-reference/admin-panel.html
-- https://issuecloser.com/blog/how-to-create-a-strapi-v4-plugin (read later)
-- https://www.youtube.com/playlist?list=PL7Q0DQYATmvjd5D57P8CN0_xp_HsRd3wn (read later)
+
+### Appearing in `/admin`
+
+If you don't want your plugin to appear in the `/admin` left-side-bar, then **don't** record it in `{root}/config/plugin.js`
+
+```js
+'someplugin': {
+  enabled: true,
+  resolve: './src/plugins/someplugin'
+},
+```
 
 ## DB interaction
 
@@ -106,7 +115,16 @@ https://strapi.io/video-library/install-config-email-upload-provider (Using Emai
 
 https://docs.strapi.io/developer-docs/latest/development/backend-customization/middlewares.html
 
-EG: Using middleware to allow CORS: https://stackoverflow.com/questions/71382302/setting-cors-in-strapi-4/71555786#71555786  
+### Allowing remote images to show
+
+https://github.com/strapi/strapi/issues/11637#issuecomment-977244572
+
+### CORS
+
+Question: Is it possible to use this request helper ( `import { request } from "@strapi/helper-plugin";` ) to call an API of another domain? When I tried it, it kept showing me a CORS error.
+
+Solution: https://stackoverflow.com/questions/71382302/setting-cors-in-strapi-4/71555786#71555786
+
 PS: CORS affects `@strapi/helper-plugin`'s helper, but not JS's `fetch`
 
 ## HTTP
@@ -193,6 +211,21 @@ Hot reload: `yarn develop`
 
 Hot reload (Backend included): `yarn develop --watch-admin`
 
+## Other CLI commands
+
+- `yarn strapi generate content-type`
+- `yarn strapi generate:plugin import-content`
+- `yarn strapi generate:model importconfig --plugin import-content`
+- List all routes: `yarn strapi routes:list`
+- Create content of type
+  ```
+  Request URL: http://localhost:1337/content-manager/collection-types/api::restaurant.restaurant
+  Request Method: POST
+  ---
+  Name: "Bbb"
+  Value: "Restaurant2"
+  ```
+
 ## Ref
 
 https://github.com/strapi/strapi/releases
@@ -207,101 +240,19 @@ https://discord.com/invite/strapi
 
 ## My personal projects and notes
 
-- https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/crud
-- https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/social-share
-- https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/todo
-- https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/wysiwyg
-- https://github.com/atabegruslan/Strapi4/tree/master/providers/%40strapi/provider-upload-custom
+- CRUD: https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/crud
+- CRUD: https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/todo (Not yet finished)
+- CRUD: https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/pets (Not yet finished)
+- SEO: https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/seo (Not yet finished)
+- CSS: https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/css (Not yet finished)
+- Language Strings: https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/language-strings
+- Auth & Upload: https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/auth-and-upload
+- Social Share Button: https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/social-share (Not yet finished)
+- WYSIWYG: https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/wysiwyg (Not yet finished)
+- Upload provider: https://github.com/atabegruslan/Strapi4/tree/master/providers/%40strapi/provider-upload-custom (Not fully done, just a demo of concept)
 
 ---
 
 # To Read
 
-- Upload
-  - https://docs.strapi.io/developer-docs/latest/plugins/upload.html#endpoints
-  - https://forum.strapi.io/t/upload-image-url/3484/2
-  - https://dev.to/bassel17/how-to-upload-an-image-to-strapi-2hhg
-    ```js
-    var fileResponse = await fetch(url);
-    var fileBlob = await fileResponse.blob();
-
-    var formData = new FormData();
-    formData.append('files', fileBlob);
-    formData.append('fileInfo', JSON.stringify({"alternativeText":alt,"caption":"","name":name}));
-
-    var uploadResponse = await fetch(`${strapi.backendURL}/api/upload`, { method: 'POST', headers: { "Authorization": `Bearer ${authData.jwt}` }, body: formData });
-    console.dir(uploadResponse);
-    ```
-- CSS
-  - https://forum.strapi.io/t/admin-panel-how-to-add-custom-css/3823/2
-  - https://strapi.io/blog/how-to-create-an-import-content-plugin-part-1-4
-- Cli commands (make this and that)
-  - yarn strapi generate content-type https://strapi.io/blog/how-to-create-a-strapi-v4-plugin-generate-a-plugin-1-6
-  - yarn strapi generate:plugin import-content https://strapi.io/blog/how-to-create-an-import-content-plugin-part-1-4
-  - yarn strapi generate:model importconfig --plugin import-content https://strapi.io/blog/how-to-create-an-import-content-plugin-part-1-4
 - https://forum.strapi.io/t/how-to-add-a-new-provider-in-users-permissions-plugin-in-strapi-v4/14165/2
-- Auth
-  - https://docs.strapi.io/developer-docs/latest/guides/auth-request.html
-  - Strapi v4, for authenticate user route should be `/api/auth/local`, not `/auth/local` https://getridbug.com/node-js/strapi-register-method-not-allowed-405-in-v4-seems-url-is-incorrect/
-  - Making protected routes: https://strapi.io/blog/protected-routes-and-authentication-with-react-and-node-js
-  - In route -> controller, `ctx.state.user` would only be something is its an auth'ed route https://discord.com/channels/811989166782021633/841755530007805983/988815887882653736
-  - https://www.youtube.com/watch?v=N4JpylgjRK0&list=PL4cUxeGkcC9h6OY8_8Oq6JerWqsKdAPxn&index=4
-  - https://strapi.io/blog/a-beginners-guide-to-authentication-and-authorization-in-strapi
-  - https://docs.strapi.io/developer-docs/latest/guides/jwt-validation.html#customize-the-jwt-validation-function
-    ```js
-    var formdata = new FormData();
-    formdata.append("identifier", config.user);
-    formdata.append("password", config.pass);
-
-    var requestOptions = {
-      method: 'POST',
-      body: formdata
-    };
-
-    var authResponse = await fetch(`${strapi.backendURL}/api/auth/local`, requestOptions);
-
-    if (authResponse.status != 200)
-    {
-      return;
-    }
-
-    var authData = await authResponse.json();
-
-    if (authData.hasOwnProperty('error'))
-    {
-      return;
-    }
-    ```
-- Env, config/server
-- Middleware 
-  - Is it possible to use this request thing ( import { request } from "@strapi/helper-plugin"; ) to call an API of another domain? When I tried it, it kept showing me CORS error: https://stackoverflow.com/questions/71382302/setting-cors-in-strapi-4/71555786#71555786
-  - https://github.com/strapi/strapi/issues/11637#issuecomment-977244572
-- Request
-- i18n
-  - https://docs-v3.strapi.io/developer-docs/latest/development/local-plugins-customization.html#i18n
-  - react-intl
-    - https://www.npmjs.com/package/react-intl
-    - https://formatjs.io/docs/react-intl/
-    - https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-react-app-with-react-intl
-    - https://github.com/formatjs/formatjs
-    - https://lokalise.com/blog/react-i18n-intl/
-    ```js
-    import { sprintf } from 'sprintf-js';
-    import { useIntl } from 'react-intl';
-
-    const SomeComponent = (props) => {
-      const intl = useIntl();
-
-      // {PLUGIN FOLDR}/admin/src/translations/en.json : { "notification.success.lang_str_id": "xxx %1$d yyy %2$d", }
-      var resultString = sprintf(intl.formatMessage({id:'scaleflex-filerobot.notification.success.lang_str_id'}), someNumber, anotherNumber);
-      alert(resultString);
-    ```
-- Create content of type
-```
-Request URL: http://localhost:1337/content-manager/collection-types/api::restaurant.restaurant
-Request Method: POST
----
-Description: "Bbb"
-Name: "Restaurant2"
-categories: [1]
-```

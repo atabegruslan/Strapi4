@@ -1,3 +1,5 @@
+# Custom Upload Provider
+
 - https://docs.strapi.io/developer-docs/latest/plugins/upload.html
 - https://oramind.com/develop-strapi-upload-provider/
 - https://github.com/strapi/strapi/blob/master/packages/providers/upload-local/lib/index.js
@@ -6,6 +8,10 @@
 ## Useful commands
 
 `npm i -S ./providers/@strapi/provider-upload-custom`
+
+## Naming
+
+You must make your provider in the following naming format: `@strapi/provider-upload-{YOUR PROVIDER NAME}`, because the "base" uploader that your provider is extending operates from: https://github.com/strapi/strapi/blob/376ff3133c13f6eb10d0c90f4b5eb701592aff97/packages/core/upload/server/register.js#L28 `modulePath = require.resolve(`@strapi/provider-upload-${providerName}`);`
 
 # Potential problems you may come across
 

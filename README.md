@@ -37,6 +37,20 @@ If you don't want your plugin to appear in the `/admin` left-side-bar, then **do
 },
 ```
 
+### Constants
+
+![](/Illustrations/constants.PNG)
+
+However that would only make constants available in the `server` folder, not the `admin`.
+
+For `admin` to access those constants, you need to make an API route which code in `admin` can call to retrieve those constants.
+
+More details (other options)
+
+- https://discord.com/channels/811989166782021633/870213780951433217/991674252631756842
+  - https://discord.com/channels/811989166782021633/870213780951433217/1003625127512133723
+- https://discord.com/channels/811989166782021633/870213780951433217/1003838034413895700
+
 ## DB interaction
 
 - https://strapi.io/blog/using-database-transactions-to-write-queries-in-strapi
@@ -44,6 +58,23 @@ If you don't want your plugin to appear in the `/admin` left-side-bar, then **do
     - https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine/bulk-operations.html
     - Entity Service API: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/entity-service-api.html
         - CRUD: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/entity-service/crud.html
+- `strapi.store` https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/configurations/required/databases.html#configuration-in-database
+
+### Store
+
+![](/Illustrations/strapi_core_store_settings_table.PNG)
+
+If you want to read from the table like above, you would write your code like below:
+
+```js
+const pluginStore = strapi.store({
+  environment: strapi.config.environment,
+  type: 'plugin',
+  name: 'users-permissions',
+});
+
+await pluginStore.get({ key: 'grant' });
+```
 
 `strapi.store` has 3 async functions available for me to use in order to play with the application store. 
 ```
@@ -210,6 +241,10 @@ Run: `yarn start`
 Hot reload: `yarn develop`
 
 Hot reload (Backend included): `yarn develop --watch-admin`
+
+## Lifecycle
+
+![](/Illustrations/lifecycle.PNG)
 
 ## Other CLI commands
 

@@ -8,6 +8,30 @@
 		- https://github.com/formatjs/formatjs
 		- https://lokalise.com/blog/react-i18n-intl/
 
+In `src\plugins\plugin-name\admin\src\index.js`
+```js
+bootstrap(app) {},
+async registerTrads({ locales }) {
+  const importedTrads = await Promise.all(
+    locales.map(locale => {
+      return import(`./translations/${locale}.json`)
+        .then(({ default: data }) => {
+          return {
+            data: prefixPluginTranslations(data, pluginId),
+            locale,
+          };
+        })
+        .catch(() => {
+          return {
+            data: {},
+            locale,
+          };
+        });
+    })
+  );
+```
+
+then in `admin` files
 ```js
 import { sprintf } from 'sprintf-js';
 import { useIntl } from 'react-intl';

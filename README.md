@@ -25,6 +25,7 @@ Structure
 - https://docs.strapi.io/developer-docs/latest/development/plugins-development.html
 - https://strapi.io/plugin-resources
 - https://docs.strapi.io/developer-docs/latest/developer-resources/plugin-api-reference/admin-panel.html
+- https://github.com/PaulBratslavsky/plugin-dev-101-strapi-v4-complete
 
 ### Appearing in `/admin`
 
@@ -260,6 +261,41 @@ Hot reload (Backend included): `yarn develop --watch-admin`
   Name: "Bbb"
   Value: "Restaurant2"
   ```
+
+## REST API
+
+Permissions: Create an user, give it Authenticated role. Settings > Roles > Authenticated user role > Give permissions
+
+Auth: 
+
+```
+curl --location --request POST '{domain}/api/auth/local' 
+--form 'identifier="user@auth.com"' 
+--form 'password="auth_user_password"'
+```
+https://www.youtube.com/watch?v=TIK9CYDgs5k&list=PL2dKqfImstaROBMu304aaEfIVTGodkdHh&index=3 (v3, but still applicable to v4)
+
+GET all files: 
+
+```
+curl --location --request GET '{domain}/api/upload/files' \
+--header 'Authorization: Bearer {token}'
+```
+https://docs.strapi.io/developer-docs/latest/plugins/upload.html#endpoints
+
+GET all contents of custom content-type: 
+
+```
+curl --location --request GET '{domain}/api/tests' \
+--header 'Authorization: Bearer {token}'
+```
+- https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html
+- https://strapi.io/blog/how-to-create-a-custom-api-endpoint-in-strapi
+
+Note: If your `content-type` contains Media fields, then you have to append this query parameter for media info to show `?populate=%2A`
+
+- https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html#population
+- https://discord.com/channels/811989166782021633/841755530007805983/1006514189935841280
 
 ## Ref
 

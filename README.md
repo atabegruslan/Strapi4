@@ -115,15 +115,15 @@ https://strapi.io/blog/understanding-the-different-types-categories-of-strapi-ho
 - https://github.com/strapi/strapi/tree/master/packages
 - https://docs.strapi.io/developer-docs/latest/plugins/plugins-intro.html
 
+### Providers
+
+https://strapi.io/video-library/install-config-email-upload-provider (Using Email and Upload as examples)
+
 ### Uploader
 
 - https://docs.strapi.io/developer-docs/latest/plugins/upload.html
 - https://www.youtube.com/watch?v=gQD24HJP1mc
 - https://www.youtube.com/watch?v=A4VZyo6BrJA&t=660s
-
-## Providers
-
-https://strapi.io/video-library/install-config-email-upload-provider (Using Email and Upload as examples)
 
 ### Social SignIns
 

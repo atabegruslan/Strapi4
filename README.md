@@ -275,7 +275,7 @@ curl --location --request POST '{domain}/api/auth/local'
 ```
 https://www.youtube.com/watch?v=TIK9CYDgs5k&list=PL2dKqfImstaROBMu304aaEfIVTGodkdHh&index=3 (v3, but still applicable to v4)
 
-GET all files: 
+GET all media: 
 
 ```
 curl --location --request GET '{domain}/api/upload/files' \
@@ -296,6 +296,11 @@ Note: If your `content-type` contains Media fields, then you have to append this
 
 - https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html#population
 - https://discord.com/channels/811989166782021633/841755530007805983/1006514189935841280
+
+## Publishing to NPMJS
+
+- Providers: The `name` in `package.json` must have this format: `@strapi/provider-upload-{whatever}`
+- Can be of any format
 
 ## Ref
 

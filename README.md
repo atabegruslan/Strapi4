@@ -100,6 +100,22 @@ https://docs.strapi.io/developer-docs/latest/development/backend-customization/c
 - https://strapi.io/blog/a-beginners-guide-to-authentication-and-authorization-in-strapi (v4, but relatable to v3)
 	- https://www.youtube.com/watch?v=vcopLqUq594&t=4336s
 
+### Get admin user's token
+
+```js
+import { auth, request } from '@strapi/helper-plugin';
+
+function Xxx() {
+
+  useEffect(() => {
+    const currentToken = auth.getToken();
+```
+
+`auth.getToken()` also works in Strapi v3.
+
+How the upload plugin uses an Axios-interceptor to shove admin's token into every request: https://github.com/strapi/strapi/blob/main/packages/core/upload/admin/src/utils/axiosInstance.js#L11   
+and subsquently `axiosInstance` ( eg: https://github.com/strapi/strapi/blob/main/packages/core/upload/admin/src/hooks/useAssets.js#L44 ) is used instead of the plain `axios`.
+
 ## Lang
 
 - https://docs.strapi.io/developer-docs/latest/plugins/i18n.html#getting-localized-entries-with-the-locale-parameter
@@ -217,6 +233,66 @@ https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/configurati
 
 https://docs.strapi.io/developer-docs/latest/developer-resources/plugin-api-reference/server.html#configuration
 
+## Customize plugin logo
+
+### The logo on the left side menu
+
+`src/plugins/someplugin/admin/src/index.js`
+```js
+import PluginIcon from './components/PluginIcon';
+
+const name = "someplugin";
+
+export default {
+  register(app) {
+    app.addMenuLink({
+      to: `/plugins/${pluginId}`,
+      icon: PluginIcon,
+```
+
+`src/plugins/someplugin/admin/src/components/PluginIcon/index.js`
+```js
+import React from 'react';
+
+const PluginIcon = () => <img src="https://{WHATEVER}.png" width="16" height="16" />;
+
+export default PluginIcon;
+```
+
+### The logo beside the title
+
+`src/plugins/someplugin/admin/src/pages/HomePage/index.js`
+```js
+import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../theme/index.css';
+
+const HomePage = () => {
+
+  return (
+    <Container fluid>
+      <Row>
+        <Col>
+          <div className="pluginHeading">
+            <img src="https://{WHATEVER}.png" />
+            <h1>Plugin Title</h1>
+          </div>
+```
+
+`src/plugins/someplugin/admin/src/theme/index.css`
+```
+.pluginHeading {
+    margin: 10px;
+}
+.pluginHeading img {
+    margin-right: 10px;
+}
+.pluginHeading h1, .pluginHeading img {
+    display: inline-block;
+    vertical-align: middle;
+}
+```
+
 ## Install and Run
 
 node v14.0.0
@@ -301,6 +377,11 @@ Note: If your `content-type` contains Media fields, then you have to append this
 
 - Providers: The `name` in `package.json` must have this format: `@strapi/provider-upload-{whatever}`
 - Can be of any format
+
+## Publishing to Strapi 
+
+- https://market.strapi.io/submit-plugin
+- https://market.strapi.io/submit-provider
 
 ## Ref
 

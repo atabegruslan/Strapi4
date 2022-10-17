@@ -384,6 +384,7 @@ Note: If your `content-type` contains Media fields, then you have to append this
 - https://market.strapi.io/submit-provider
 - https://discord.com/channels/811989166782021633/942840578582913025/1027133217981079602
 - https://strapi.io/marketplace/guidelines
+- Then it will appear here: https://market.strapi.io/
 
 ## Ref
 

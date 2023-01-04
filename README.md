@@ -52,6 +52,14 @@ More details (other options)
   - https://discord.com/channels/811989166782021633/870213780951433217/1003625127512133723
 - https://discord.com/channels/811989166782021633/870213780951433217/1003838034413895700
 
+## Paths
+
+```
+const publicPath = strapi.dirs.public
+  ? strapi.dirs.public // 4.2 or below
+  : strapi.dirs.static.public; // To accomodate for Strapi v4.3.x
+```
+
 ## DB interaction
 
 - https://strapi.io/blog/using-database-transactions-to-write-queries-in-strapi
@@ -116,6 +124,10 @@ function Xxx() {
 How the upload plugin uses an Axios-interceptor to shove admin's token into every request: https://github.com/strapi/strapi/blob/main/packages/core/upload/admin/src/utils/axiosInstance.js#L11   
 and subsquently `axiosInstance` ( eg: https://github.com/strapi/strapi/blob/main/packages/core/upload/admin/src/hooks/useAssets.js#L44 ) is used instead of the plain `axios`.
 
+### Reset admin credentials
+
+https://forum.strapi.io/t/forgot-my-password/10457/2
+
 ## Lang
 
 - https://docs.strapi.io/developer-docs/latest/plugins/i18n.html#getting-localized-entries-with-the-locale-parameter
@@ -134,6 +146,16 @@ https://strapi.io/blog/understanding-the-different-types-categories-of-strapi-ho
 ### Providers
 
 https://strapi.io/video-library/install-config-email-upload-provider (Using Email and Upload as examples)
+
+#### Provider calling another provider
+
+Eg: a custom upload provider calling on the local upload provider:
+
+```
+const localUpload = require('@strapi/provider-upload-local');
+//...
+return localUpload.init().uploadStream(file);
+```
 
 ### Uploader
 
@@ -162,6 +184,10 @@ https://strapi.io/video-library/install-config-email-upload-provider (Using Emai
 ## Middleware
 
 https://docs.strapi.io/developer-docs/latest/development/backend-customization/middlewares.html
+
+### Dynamically manipulate middleware within a plugin
+
+In `server/register.js` or `server/bootstrap.js` - manipulate the `strapi.config.middlewares` object.
 
 ### Allowing remote images to show
 
@@ -378,8 +404,24 @@ Note: If your `content-type` contains Media fields, then you have to append this
 
 ## Publishing to NPMJS
 
-- Providers: The `name` in `package.json` must have this format: `@strapi/provider-upload-{whatever}`
-- Can be of any format
+### Naming the provider
+
+See this https://github.com/strapi/strapi/blob/cf49ddbbfc33fa6a0145f9ddf50677e31c1d711e/packages/core/upload/server/register.js#L28 
+
+When you publish your provider module to NPMJS, you need to name it in the format of `provider-upload-{your-provider-name}`. 
+
+In `config/plugins.js`, you can either write `provider: '{your-provider-name}'` or in full `provider: '{provider-upload-your-provider-name}'`.
+
+```
+module.exports = {
+    'upload': {
+        config: {
+            provider: 'provider-upload-your-provider-name',
+            providerOptions: {},
+        },
+    },
+};
+```
 
 ## Publishing to Strapi 
 
@@ -414,8 +456,14 @@ https://discord.com/invite/strapi
 - WYSIWYG: https://github.com/atabegruslan/Strapi4/tree/master/src/plugins/wysiwyg (Not yet finished)
 - Upload provider: https://github.com/atabegruslan/Strapi4/tree/master/providers/%40strapi/provider-upload-custom (Not fully done, just a demo of concept)
 
+## Misc
+
+- Dark mode: https://docs.strapi.io/user-docs/latest/getting-started/introduction.html#setting-up-your-administrator-profile
+
 ---
 
 # To Read
 
 - https://forum.strapi.io/t/how-to-add-a-new-provider-in-users-permissions-plugin-in-strapi-v4/14165/2
+- Cloud: https://strapi.io/pricing-cloud
+- https://strapi.io/blog/add-cloudinary-support-to-your-strapi-application

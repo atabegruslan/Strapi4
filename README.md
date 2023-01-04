@@ -323,6 +323,9 @@ Hot reload (Backend included): `yarn develop --watch-admin`
 
 ![](/Illustrations/lifecycle.PNG)
 
+- https://discord.com/channels/811989166782021633/1059867257385254953/1059867257385254953
+- https://miro.com/app/board/o9J_kkD8OK8=/
+
 ## Other CLI commands
 
 - `yarn strapi generate content-type`

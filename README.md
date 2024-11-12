@@ -460,6 +460,7 @@ https://discord.com/invite/strapi
 
 - Dark mode: https://docs.strapi.io/user-docs/latest/getting-started/introduction.html#setting-up-your-administrator-profile
 - Send email: `await strapi.plugin('email').service('email').send({from:'no-reply@whatever.com', to:'recipient@whatever.com', subject:'Title', text:'Blah Blah'})`
+- https://dev.to/peterlidee/sending-email-confirmations-in-strapi-4di9
 ---
 
 # To Read

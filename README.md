@@ -459,7 +459,7 @@ https://discord.com/invite/strapi
 ## Misc
 
 - Dark mode: https://docs.strapi.io/user-docs/latest/getting-started/introduction.html#setting-up-your-administrator-profile
-
+- Send email: `await strapi.plugin('email').service('email').send({from:'no-reply@whatever.com', to:'recipient@whatever.com', subject:'Title', text:'Blah Blah'})`
 ---
 
 # To Read

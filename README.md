@@ -402,6 +402,61 @@ Note: If your `content-type` contains Media fields, then you have to append this
 - https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html#population
 - https://discord.com/channels/811989166782021633/841755530007805983/1006514189935841280
 
+Adding to default API functionality:
+
+```
+'use strict';
+
+/**
+ * xxx router
+ */
+
+const { createCoreRouter } = require('@strapi/strapi').factories;
+
+module.exports = createCoreRouter('api::xxx.xxx');
+
+module.exports = {
+    routes: [
+        {
+            method: 'POST',
+            path: '/do-xxx',
+            handler: 'xxx.doSomething',
+            config: {
+                policies: [],
+            },
+        },
+    ]
+}
+```
+
+```
+'use strict';
+
+/**
+ * xxx controller
+ */
+
+const { createCoreController } = require('@strapi/strapi').factories;
+
+module.exports = createCoreController('api::xxx.xxx');
+
+module.exports = {
+  async doSomething(ctx) {
+    const { id } = ctx.state.user;
+    const { somePayloadField } = ctx.request.body;
+    
+    try {
+        // ...
+
+        ctx.body = result;
+    } catch (error) {
+        console.error(error);
+        return ctx.send({ error: 'Error doing xxx' }, 500);
+    }
+  },
+}
+```
+
 ## Publishing to NPMJS
 
 ### Naming the provider

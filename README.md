@@ -319,6 +319,32 @@ const HomePage = () => {
 }
 ```
 
+## Documenting API
+
+- https://docs.strapi.io/dev-docs/plugins/documentation
+
+However, it have some shortcomings
+- Regarding USER (ie: `plugin::users-permissions.user`), it will ONLY document the GENERIC routes. If you create custom routes by adding `/src/api/user/routes/user.js` and `/src/api/user/controllers/user.js`, those custom routes won't be included in the documentation.
+- It can NOT document routes if you only make `src/api/{customcontenttype}/routes/{customcontenttype}.js`, but didn't make a corresponding customcontenttype in `{domain}/admin/plugins/content-type-builder/content-types/api::customcontenttype.customcontenttype`.
+- It can NOT document BOTH generic and custom routes for Custom Content Types.
+
+So even if you write the `routes.js` file like:
+```js
+const { createCoreRouter } = require('@strapi/strapi').factories;
+module.exports = createCoreRouter('api::customcontenttype.customcontenttype');
+module.exports = {
+    routes: [
+        {
+            method: 'GET',
+            path: '/custom-route',
+```
+The custom routes won't be documented.
+
+If you don't wish to use `@strapi/plugin-documentation` anymore, you should remove:
+- `yarn remove @strapi/plugin-documentation`
+- `rm -rf ./src/extensions/documentation/`
+- `rm -rf ./src/api/{customcontenttype}/documentation/` for all customcontenttype s
+
 ## Install and Run
 
 node v14.0.0
@@ -344,6 +370,10 @@ Run: `yarn start`
 Hot reload: `yarn develop`
 
 Hot reload (Backend included): `yarn develop --watch-admin`
+
+### Other examples of Strapi setup on server
+
+- Nginx proxy & PM2: https://github.com/atabegruslan/Others/blob/master/Server/setup_webserver_strapi4_nginx_pm2.md
 
 ## Lifecycle
 

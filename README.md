@@ -20,6 +20,13 @@ Structure
 - CMS: https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/file-structure.html
 - Plugin: https://docs.strapi.io/developer-docs/latest/update-migration-guides/migration-guides/v4/plugin/update-folder-structure.html#updating-folder-structure-automatically : "Example of a Strapi v4 plugin structure"
 
+## Basics
+
+When you SignIn for the first time after you `npx create-strapi-app@4.20.4 projectname --quickstart`, it will force you to create an admin first.
+In the code, a corresponding `/types/generated/contentTypes.d.js` will be added.
+
+Everytime when you create a Custom Content Type in `{domain}/admin/plugins/content-type-builder/content-types/`, a corresponding `src/api/{customcontenttype}/` folder will be generated in code.
+
 ## Plugins
 
 - https://docs.strapi.io/developer-docs/latest/development/plugins-development.html

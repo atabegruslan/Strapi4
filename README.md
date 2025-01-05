@@ -487,6 +487,16 @@ module.exports = {
 }
 ```
 
+## WebSockets
+
+Refer to this example: https://github.com/Ruslan-Aliyev/chat-Strapi-ReactJS-SocketIo/tree/master/backend
+
+But in summary: 
+- Use https://market.strapi.io/plugins/strapi-plugin-io
+- See: https://github.com/Ruslan-Aliyev/chat-Strapi-ReactJS-SocketIo/blob/master/backend/config/plugins.js
+  - `socket.on("key1", (data) => { ...` to catch client-sent data.
+  - `strapi.$io.raw({ event: 'key2', data: data })` to push data to client.
+
 ## Publishing to NPMJS
 
 ### Naming the provider
